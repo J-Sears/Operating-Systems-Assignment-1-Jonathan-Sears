@@ -36,7 +36,7 @@ int main()
             cout << "Please input the mesaage you want to have displayed: ";
             string message;
             cin.ignore();
-            getline(cin, message); //takes in whatever message the user wants to display
+            getline(cin, message); //takes in whatever message the user wants to display. Use "testing.txt" as a test for this command
             system(("echo " + message).c_str());
             cout << endl;
         }
