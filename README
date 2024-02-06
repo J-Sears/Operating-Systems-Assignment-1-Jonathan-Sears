@@ -1,0 +1,13 @@
+Jonathan Sears P676W437
+This Program was written in C++ using Visual Studio.
+When the C++ program is run, the terminal will pop up displaying a menu with different shell commands. When the user inputs a number (1 through 5) they will choose what command to run. When 0 is chosen,
+the program will exit and end.
+
+These 5 commands are:
+        1. dir - shows all the current directories the user is in
+        2. cd - prints out the current directory the user is in
+        3. mkdir - takes in a user input and creates a new directory in the project folder 
+        4. echo - takes in a user input message and prints it out to the terminal
+        5. cat - takes in the name of a text file and displays the contents of it (using Testing.txt for this example)
+
+  
