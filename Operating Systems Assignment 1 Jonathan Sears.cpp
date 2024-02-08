@@ -4,13 +4,14 @@
 #include <cstdlib>
 #include <string>
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 
 
 int main()
 {
-    cout << "Please select a command line function to use. (Press 0 to exit)" << endl << "Press 1 to execute 'dir'" << endl << "Press 2 to execute 'cd'" << endl << "Press 3 to execute 'mkdir'" << endl << "Press 4 to execute 'echo'" << endl << "Press 5 to execute 'type'" << endl;
+    cout << "Please select a command line function to use. (Press 0 to exit)" << endl << "Press 1 to execute 'dir'" << endl << "Press 2 to execute 'cd'" << endl << "Press 3 to execute 'mkdir'" << endl << "Press 4 to execute 'echo'" << endl << "Press 5 to execute 'type'" << endl << "Press 6 to execute 'concat'" << endl;
     int input;
     cin >> input;
     while (input != 0) //Loops until the user decides to exit the menu by inputting 0
@@ -49,10 +50,43 @@ int main()
             system(("type " + fileName).c_str());
             cout << endl;
         }
-        cout << "Please select a command line function to use. (Press 0 to exit)" << endl << "Press 1 to execute 'dir'" << endl << "Press 2 to execute 'cd'" << endl << "Press 3 to execute 'mkdir'" <<  endl << "Press 4 to execute 'echo'" << endl << "Press 5 to execute 'type'" << endl;
+        if (input == 6)
+        {
+            ifstream fileName1, fileName2;
+            ofstream outputFile("Concat_File.txt"); //Creates the output file for the concat operation
+            char ch1, ch2;
+            string file1, file2; 
+            cout << "Please input the name of the first file you wish to concatinate: ";
+            cin >> file1; //takes in the input for the first file name
+            cout << "Please input the name of the second file you wish to concatinate: ";
+            cin >> file2; //takes in the input for the second file name
+            fileName1.open(file1);
+            fileName2.open(file2);
+            if (!fileName1 || !fileName2) //checks to make sure both of the files can be opened
+            {
+                cout << "Error one of or both of the files you input could not be opened! (Make sure the files end with .txt)" << endl;
+                break;
+            }
+            while (fileName1.eof() == 0) //loops through the first file and writes it to the output file
+            {
+                fileName1 >> ch1;
+                outputFile << ch1;
+            }
+            while (fileName2.eof() == 0) //loops through the second file and writes it to the output file
+            {
+                fileName2 >> ch2;
+                outputFile << ch2;
+            }
+            cout << file1 << " and " << file2 << " have successfully been concatinated together and the output has been put into 'Concat_File.txt'" << endl;
+            fileName1.close();
+            fileName2.close();
+            outputFile.close();
+        }
+        cout << "Please select a command line function to use. (Press 0 to exit)" << endl << "Press 1 to execute 'dir'" << endl << "Press 2 to execute 'cd'" << endl << "Press 3 to execute 'mkdir'" << endl << "Press 4 to execute 'echo'" << endl << "Press 5 to execute 'type'" << endl << "Press 6 to execute 'concat'" << endl;
         cin >> input;
     }
 
-    
+    remove("Concat_File.txt"); //removes the concatinated file once the user ends the program
+
     return 0;
 }
